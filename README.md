@@ -1,5 +1,5 @@
 # ip-anonymize
-Anonymize IP addresses, works with IPv4 and IPv6
+👤 Anonymize IP addresses, works with IPv4 and IPv6
 - Supports IPv4 ✔
 - Supports IPv6 ✔
   - Supports `x:x:x:x:x:x:x:x` format ✔
@@ -19,19 +19,18 @@ anonymize(ipv4, 16) // '192.168.0.0'
 var ipv6 = 'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff'
 anonymize(ipv6) // 'ffff:ff00::'
 
-// Use 16-bit mask (second number is for IPv6)
+// Use 16-bit mask (first number is for IPv4, second for IPv6)
 anonymize(ipv6, 16, 16) // 'ffff::'
 ```
 
 ## API Documentation
 ```js
 const anonymize = require('ip-anonymize')
-
 anonymize(ip [, v4MaskLength, v6MaskLength])
 ```
-`ip`: `String`, The IP address to anonymize
-`v4MaskLength`: `Number`, Number of bits to keep at the beginning of an IPv4 address (default: 24)
-`v6MaskLength`: `Number`, Number of bits to keep at the beginning of an IPv6 address (default: 24)
+- `ip`: `String`, The IP address to anonymize
+- `v4MaskLength`: `Number`, Number of bits to keep at the beginning of an IPv4 address (default: `24`)
+- `v6MaskLength`: `Number`, Number of bits to keep at the beginning of an IPv6 address (default: `24`)
 
 
 ## References
