@@ -45,3 +45,4 @@ anonymize(ip [, v4MaskLength, v6MaskLength])
 
 ## References
 1. IPv6 representation: [RFC3513](https://tools.ietf.org/html/rfc3513#section-2.2)
+2. [IPv6 validator](https://www.helpsystems.com/intermapper/ipv6-test-address-validation)
