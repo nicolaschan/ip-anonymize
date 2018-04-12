@@ -1,3 +1,5 @@
+/* global describe, it */
+
 const anonymize = require('../index.js')
 
 const assert = require('assert')

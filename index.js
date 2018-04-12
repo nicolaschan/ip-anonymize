@@ -17,7 +17,7 @@ var isIPv6 = function (ipString, chunks = 8) {
   if (ipString === '::') {
     return true
   }
-  if (!ipString.match(/^([0-9a-f]{0,4}\:){2,7}[0-9a-f]{1,4}$/)) {
+  if (!ipString.match(/^([0-9a-f]{0,4}:){2,7}[0-9a-f]{1,4}$/)) {
     return false
   }
 
@@ -34,9 +34,8 @@ var isIPv6 = function (ipString, chunks = 8) {
   }
 
   if (ipString.split('::').length === 2) {
-    var [left, right] = ipString.split('::')
-    var left = left.split(':')
-    var right = right.split(':')
+    var right = ipString.split('::')[1]
+    right = right.split(':')
     for (let i = 0; i < right.length - 1; i++) {
       if (right[i] === '') {
         return false
@@ -47,7 +46,7 @@ var isIPv6 = function (ipString, chunks = 8) {
   return true
 }
 
-var isIPv6_4 = function (ipString) {
+var isIPv64 = function (ipString) {
   var parts = ipString.split(':')
   var v6 = parts.slice(0, parts.length - 1).join(':')
   var v4 = parts[parts.length - 1]
@@ -61,7 +60,7 @@ var ipType = function (ipString) {
   if (isIPv6(ipString)) {
     return 'IPv6'
   }
-  if (isIPv6_4(ipString)) {
+  if (isIPv64(ipString)) {
     return 'IPv6_4'
   }
   return 'None'
@@ -135,7 +134,7 @@ var binaryIPv6 = function (ipString) {
   return binaryChunks.join('')
 }
 
-var binaryIPv6_4 = function (ipString) {
+var binaryIPv64 = function (ipString) {
   var parts = ipString.split(':')
   var v6 = parts.slice(0, parts.length - 1).join(':')
   var v4 = parts[parts.length - 1]
@@ -219,7 +218,7 @@ var fromBinaryIPv6 = function (binaryString) {
   return compressedChunks
 }
 
-var fromBinaryIPv6_4 = function (binaryString) {
+var fromBinaryIPv64 = function (binaryString) {
   var v6 = binaryString.substring(0, 96)
   var v4 = binaryString.substring(96)
 
@@ -247,11 +246,11 @@ var anonymizeIPv6 = function (ipString, maskLength = 24) {
   return fromBinaryIPv6(anonymizedBinary)
 }
 
-var anonymizeIPv6_4 = function (ipString, maskLength = 24) {
-  var binary = binaryIPv6_4(ipString)
+var anonymizeIPv64 = function (ipString, maskLength = 24) {
+  var binary = binaryIPv64(ipString)
   var segment = binary.substring(0, maskLength)
   var anonymizedBinary = padRight(segment, 128)
-  return fromBinaryIPv6_4(anonymizedBinary)
+  return fromBinaryIPv64(anonymizedBinary)
 }
 
 var anonymizeIP = function (ipString, v4MaskLength, v6MaskLength) {
@@ -268,7 +267,7 @@ var anonymizeIP = function (ipString, v4MaskLength, v6MaskLength) {
     return anonymizeIPv6(ipString, v6MaskLength)
   }
   if (type === 'IPv6_4') {
-    return anonymizeIPv6_4(ipString, v6MaskLength)
+    return anonymizeIPv64(ipString, v6MaskLength)
   }
   return null
 }
