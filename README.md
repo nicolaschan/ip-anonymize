@@ -1,6 +1,7 @@
 # ip-anonymize
-[![Build Status](https://img.shields.io/travis/nicolaschan/ip-anonymize.svg)](https://travis-ci.org/nicolaschan/ip-anonymize)
-[![codecov.io](https://img.shields.io/codecov/c/github/nicolaschan/ip-anonymize/master.svg)](https://codecov.io/github/nicolaschan/ip-anonymize?branch=master)
+[![Build Status](https://travis-ci.org/nicolaschan/ip-anonymize.svg?branch=master)](https://travis-ci.org/nicolaschan/ip-anonymize)
+[![codecov](https://codecov.io/gh/nicolaschan/ip-anonymize/branch/master/graph/badge.svg)](https://codecov.io/gh/nicolaschan/ip-anonymize)
+
 
 👤 Anonymize IP addresses, works with IPv4 and IPv6
 - Supports IPv4 ✔
