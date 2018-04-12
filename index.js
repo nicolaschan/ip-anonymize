@@ -17,8 +17,16 @@ var isIPv6 = function (ipString, chunks = 8) {
   if (ipString === '::') {
     return true
   }
-  if (!ipString.match(/^([0-9a-f]{0,4}:){2,7}[0-9a-f]{1,4}$/)) {
+
+  if (!ipString.match(/^([0-9a-f]{0,4}:?){2,8}$/)) {
     return false
+  }
+
+  // If there is a colon at the end, it must be a double colon
+  if (ipString[ipString.length - 1] === ':') {
+    if (ipString[ipString.length - 2] !== ':') {
+      return false
+    }
   }
 
   // No more than one double colon
@@ -47,9 +55,7 @@ var isIPv6 = function (ipString, chunks = 8) {
 }
 
 var isIPv64 = function (ipString) {
-  var parts = ipString.split(':')
-  var v6 = parts.slice(0, parts.length - 1).join(':')
-  var v4 = parts[parts.length - 1]
+  var [v6, v4] = splitIPv64(ipString)
   return isIPv6(v6, 6) && isIPv4(v4)
 }
 
@@ -134,10 +140,20 @@ var binaryIPv6 = function (ipString) {
   return binaryChunks.join('')
 }
 
+var splitIPv64 = function (ipString) {
+  var separatorIndex = ipString.lastIndexOf(':')
+  var v6 = ipString.substring(0, separatorIndex)
+  var v4 = ipString.substring(separatorIndex + 1)
+
+  if (v6[v6.length - 1] === ':') {
+    v6 = v6 + ':'
+  }
+
+  return [v6, v4]
+}
+
 var binaryIPv64 = function (ipString) {
-  var parts = ipString.split(':')
-  var v6 = parts.slice(0, parts.length - 1).join(':')
-  var v4 = parts[parts.length - 1]
+  var [v6, v4] = splitIPv64(ipString)
 
   var [left, right] = v6.split('::')
   left = left.split(':')
@@ -203,6 +219,10 @@ var compressIPv6 = function (ipString) {
   if (runStart !== null && runLength > bestRunLength) {
     bestRunLength = runLength
     bestRunStart = runStart
+  }
+
+  if (bestRunLength < 2) {
+    return ipString
   }
 
   var left = chunks.slice(0, bestRunStart).join(':')
