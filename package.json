@@ -10,6 +10,7 @@
     "test": "nyc mocha",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
+  "keywords": ["ip", "anonymous", "privacy", "ip address"],
   "dependencies": {},
   "devDependencies": {
     "codecov": "^3.0.0",
