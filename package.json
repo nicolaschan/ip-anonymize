@@ -1,6 +1,6 @@
 {
   "name": "ip-anonymize",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Anonymize IP addresses, works with IPv4 and IPv6",
   "main": "index.js",
   "repository": "https://github.com/nicolaschan/ip-anonymize",
@@ -10,7 +10,12 @@
     "test": "nyc mocha && standard",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
-  "keywords": ["ip", "anonymous", "privacy", "ip address"],
+  "keywords": [
+    "ip",
+    "anonymous",
+    "privacy",
+    "ip address"
+  ],
   "dependencies": {},
   "devDependencies": {
     "codecov": "^3.0.0",
