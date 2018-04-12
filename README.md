@@ -10,6 +10,12 @@
   - Supports `x:x:x:x:x:x:d.d.d.d` format ✔
   - Automatically compresses zeros optimally
 
+## Installation
+```bash
+$ npm install ip-anonymize --save # Using npm
+$ yarn add ip-anonymize # OR use yarn
+```
+
 ## Usage
 ```js
 const anonymize = require('ip-anonymize')
