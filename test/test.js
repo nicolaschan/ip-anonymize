@@ -52,6 +52,30 @@ describe('AnonymizeTest', function () {
       assert.equal(anonymize('::ff:0:192.168.0.1'), '::0.0.0.0')
     })
 
+    it('should anonymize IPv4 with odd mask', function () {
+      assert.equal(anonymize('255.255.255.0', 1), '128.0.0.0')
+      assert.equal(anonymize('255.255.255.0', 3), '224.0.0.0')
+    })
+    it('should anonymize IPv6 with odd mask', function () {
+      assert.equal(anonymize('ffff::', 1, 1), '8000::')
+      assert.equal(anonymize('ffff::', 3, 3), 'e000::')
+      assert.equal(anonymize('ffff::', 5, 5), 'f800::')
+    })
+    it('should anonymize IPv6_4 with odd mask', function () {
+      assert.equal(anonymize('ffff::8.8.8.8', 1, 1), '8000::0.0.0.0')
+      assert.equal(anonymize('ffff::8.8.8.8', 3, 3), 'e000::0.0.0.0')
+      assert.equal(anonymize('ffff::8.8.8.8', 5, 5), 'f800::0.0.0.0')
+    })
+
+    it('should use the mask arguments in correct order', function () {
+      assert.equal(anonymize('ffff::8.8.8.8', 0, 128), 'ffff::8.8.8.8')
+      assert.equal(anonymize('ffff::f', 0, 128), 'ffff::f')
+      assert.equal(anonymize('8.8.8.8', 0, 128), '0.0.0.0')
+      assert.equal(anonymize('ffff::8.8.8.8', 128, 0), '::0.0.0.0')
+      assert.equal(anonymize('ffff::f', 128, 0), '::')
+      assert.equal(anonymize('8.8.8.8', 128, 0), '8.8.8.8')
+    })
+
     it('should anonymize IPv4 correctly preserving all bits', function () {
       assert.equal(anonymize('172.0.0.1', 32), '172.0.0.1')
       assert.equal(anonymize('0.0.0.0', 32), '0.0.0.0')
@@ -78,6 +102,10 @@ describe('AnonymizeTest', function () {
       assert.equal(anonymize('0:b:c:d:e:f:192.168.0.1', 128, 128), '0:b:c:d:e:f:192.168.0.1')
       assert.equal(anonymize('0:0:c:d:e:f:192.168.0.1', 128, 128), '::c:d:e:f:192.168.0.1')
       assert.equal(anonymize('f:f::192.168.0.1', 128, 128), 'f:f::192.168.0.1')
+      assert.equal(anonymize('f:f::0.0.0.1', 128, 128), 'f:f::0.0.0.1')
+      assert.equal(anonymize('f:f::0:0.0.0.1', 128, 128), 'f:f::0.0.0.1')
+      assert.equal(anonymize('f:f::0:0.0.0.1', 128, 128), 'f:f::0.0.0.1')
+      assert.equal(anonymize('f:f::0:0:0.0.0.1', 128, 128), 'f:f::0.0.0.1')
     })
   })
 })
