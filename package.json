@@ -7,7 +7,7 @@
   "author": "Nicolas Chan",
   "license": "MIT",
   "scripts": {
-    "test": "nyc mocha",
+    "test": "nyc mocha && standard",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "keywords": ["ip", "anonymous", "privacy", "ip address"],
