@@ -3,6 +3,7 @@
   "version": "0.0.3",
   "description": "Anonymize IP addresses, works with IPv4 and IPv6",
   "main": "index.js",
+  "types": "index.d.ts",
   "repository": "https://github.com/nicolaschan/ip-anonymize",
   "author": "Nicolas Chan",
   "license": "MIT",
