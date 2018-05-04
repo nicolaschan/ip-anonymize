@@ -11,7 +11,7 @@
   - Automatically compresses zeros optimally
 - Choose number of bits to keep
 
-This package converts an IP address to binary and keeps a specified number of bits on the left while setting the remaining bits to zero. It then converts the binary back into an IP address string and returns it. For example, if the binary was `10101010` and we wanted to keep the first four bits (4-bit mask), the binary would become `1010000`. 
+This package converts an IP address to binary and keeps a specified number of bits on the left while setting the remaining bits to zero. It then converts the binary back into an IP address string and returns it. For example, if the binary was `10101010` and we wanted to keep the first four bits (4-bit mask), the binary would become `10100000`. 
 
 ## Installation
 ```bash
