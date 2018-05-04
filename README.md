@@ -3,11 +3,11 @@
 [![codecov](https://codecov.io/gh/nicolaschan/ip-anonymize/branch/master/graph/badge.svg)](https://codecov.io/gh/nicolaschan/ip-anonymize)
 [![npm](https://img.shields.io/npm/v/ip-anonymize.svg)](https://www.npmjs.com/package/ip-anonymize)
 
-👤 Anonymize IP addresses, works with IPv4 and IPv6.
-- Supports IPv4 ✔
-- Supports IPv6 ✔
-  - Supports `x:x:x:x:x:x:x:x` format ✔
-  - Supports `x:x:x:x:x:x:d.d.d.d` format ✔
+Anonymize IP addresses, works with IPv4 and IPv6.
+- Supports IPv4
+- Supports IPv6
+  - Supports `x:x:x:x:x:x:x:x` format
+  - Supports `x:x:x:x:x:x:d.d.d.d` format
   - Automatically compresses zeros optimally
 - Choose number of bits to keep
 
