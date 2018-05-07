@@ -1,6 +1,7 @@
 # ip-anonymize
 [![Build Status](https://travis-ci.org/nicolaschan/ip-anonymize.svg?branch=master)](https://travis-ci.org/nicolaschan/ip-anonymize)
 [![codecov](https://codecov.io/gh/nicolaschan/ip-anonymize/branch/master/graph/badge.svg)](https://codecov.io/gh/nicolaschan/ip-anonymize)
+[![dependencies Status](https://david-dm.org/nicolaschan/ip-anonymize/status.svg)](https://david-dm.org/nicolaschan/ip-anonymize)
 [![npm](https://img.shields.io/npm/v/ip-anonymize.svg)](https://www.npmjs.com/package/ip-anonymize)
 
 Anonymize IP addresses, works with IPv4 and IPv6.
@@ -13,7 +14,7 @@ Anonymize IP addresses, works with IPv4 and IPv6.
 
 This package converts an IP address to binary and keeps a specified number of bits on the left while setting the remaining bits to zero. It then converts the binary back into an IP address string and returns it. For example, if the binary was `10101010` and we wanted to keep the first four bits (4-bit mask), the binary would become `10100000`. 
 
-## Installation
+## Getting Started
 ```bash
 $ npm install ip-anonymize --save # Using npm
 $ yarn add ip-anonymize # OR use yarn
