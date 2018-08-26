@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/nicolaschan/ip-anonymize.svg?branch=master)](https://travis-ci.org/nicolaschan/ip-anonymize)
 [![codecov](https://codecov.io/gh/nicolaschan/ip-anonymize/branch/master/graph/badge.svg)](https://codecov.io/gh/nicolaschan/ip-anonymize)
 [![dependencies Status](https://david-dm.org/nicolaschan/ip-anonymize/status.svg)](https://david-dm.org/nicolaschan/ip-anonymize)
+[![npm](https://img.shields.io/npm/dt/ip-anonymize.svg)](https://www.npmjs.com/package/ip-anonymize)
 [![npm](https://img.shields.io/npm/v/ip-anonymize.svg)](https://www.npmjs.com/package/ip-anonymize)
 
 Anonymize IP addresses, works with IPv4 and IPv6.
