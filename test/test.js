@@ -29,20 +29,20 @@ describe('AnonymizeTest', function () {
       assert.equal(anonymize('a::b:0:0:0:0:0:f'), null)
     })
 
-    it('should anonymize IPv4 correctly (default 16)', function () {
+    it('should anonymize IPv4 correctly (default 24)', function () {
       assert.equal(anonymize('192.168.0.1'), '192.168.0.0')
       assert.equal(anonymize('192.168.0.132'), '192.168.0.0')
-      assert.equal(anonymize('1.1.1.1'), '1.1.0.0')
+      assert.equal(anonymize('1.1.1.1'), '1.1.1.0')
       assert.equal(anonymize('0.0.0.0'), '0.0.0.0')
-      assert.equal(anonymize('255.255.255.255'), '255.255.0.0')
+      assert.equal(anonymize('255.255.255.255'), '255.255.255.0')
       assert.equal(anonymize('172.0.0.1'), '172.0.0.0')
     })
 
-    it('should anonymize IPv6 correctly (default 16)', function () {
+    it('should anonymize IPv6 correctly (default 24)', function () {
       assert.equal(anonymize('::'), '::')
       assert.equal(anonymize('::1'), '::')
       assert.equal(anonymize('0:0:0:0:0:0:0:0'), '::')
-      assert.equal(anonymize('ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff'), 'ffff::')
+      assert.equal(anonymize('ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff'), 'ffff:ff00::')
       assert.equal(anonymize('ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff', 16, 16), 'ffff::')
     })
 
@@ -50,6 +50,7 @@ describe('AnonymizeTest', function () {
       assert.equal(anonymize('0:0:0:0:0:0:192.168.0.1'), '::0.0.0.0')
       assert.equal(anonymize('ff::0:0:192.168.0.1'), 'ff::0.0.0.0')
       assert.equal(anonymize('::ff:0:192.168.0.1'), '::0.0.0.0')
+      assert.equal(anonymize('ffff:ffff::ff:0:192.168.0.1'), 'ffff:ff00::0.0.0.0')
     })
 
     it('should anonymize IPv4 with odd mask', function () {

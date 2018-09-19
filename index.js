@@ -273,7 +273,7 @@ var anonymizeIPv64 = function (ipString, maskLength) {
   return fromBinaryIPv64(anonymizedBinary)
 }
 
-var anonymizeIP = function (ipString, v4MaskLength = 16, v6MaskLength = 16) {
+var anonymizeIP = function (ipString, v4MaskLength = 24, v6MaskLength = 24) {
   if (typeof ipString !== 'string') {
     return null
   }
