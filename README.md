@@ -55,9 +55,6 @@ anonymize(ip [, v4MaskLength, v6MaskLength])
 
 Returns `null` if the IP address is invalid.
 
-## Changelog
-- 0.0.7: Default mask reduced to 16 bits. As per semantic versioning rules, the public API should not be considered stable if the major version is 0.
-
 ## References
 1. IPv6 representation: [RFC3513](https://tools.ietf.org/html/rfc3513#section-2.2)
 2. [IPv6 validator](https://www.helpsystems.com/intermapper/ipv6-test-address-validation)
