@@ -252,28 +252,28 @@ var fromBinaryIPv64 = function (binaryString) {
   return compressedChunks + right
 }
 
-var anonymizeIPv4 = function (ipString, maskLength = 24) {
+var anonymizeIPv4 = function (ipString, maskLength) {
   var binary = binaryIPv4(ipString)
   var segment = binary.substring(0, maskLength)
   var anonymizedBinary = padRight(segment, 32)
   return fromBinaryIPv4(anonymizedBinary)
 }
 
-var anonymizeIPv6 = function (ipString, maskLength = 24) {
+var anonymizeIPv6 = function (ipString, maskLength) {
   var binary = binaryIPv6(ipString)
   var segment = binary.substring(0, maskLength)
   var anonymizedBinary = padRight(segment, 128)
   return fromBinaryIPv6(anonymizedBinary)
 }
 
-var anonymizeIPv64 = function (ipString, maskLength = 24) {
+var anonymizeIPv64 = function (ipString, maskLength) {
   var binary = binaryIPv64(ipString)
   var segment = binary.substring(0, maskLength)
   var anonymizedBinary = padRight(segment, 128)
   return fromBinaryIPv64(anonymizedBinary)
 }
 
-var anonymizeIP = function (ipString, v4MaskLength, v6MaskLength) {
+var anonymizeIP = function (ipString, v4MaskLength = 16, v6MaskLength = 16) {
   if (typeof ipString !== 'string') {
     return null
   }
