@@ -59,6 +59,15 @@ var isIPv64 = function (ipString) {
   return isIPv6(v6, 6) && isIPv4(v4)
 }
 
+// Reference: https://web.archive.org/web/20181019071947/http://www.tcpipguide.com/free/t_IPv6IPv4AddressEmbedding-2.htm
+// Either starts with 96 0s or 80 0s followed by 16 1s
+var isIPv4MappedIPv6 = function (ipString) {
+  return isIPv64(ipString) &&
+    (!binaryIPv64(ipString).substring(0, 96).includes('1') ||
+      (!binaryIPv64(ipString).substring(0, 80).includes('1') &&
+        !binaryIPv64(ipString).substring(80, 96).includes('0')))
+}
+
 var ipType = function (ipString) {
   if (isIPv4(ipString)) {
     return 'IPv4'
@@ -287,7 +296,11 @@ var anonymizeIP = function (ipString, v4MaskLength = 24, v6MaskLength = 24) {
     return anonymizeIPv6(ipString, v6MaskLength)
   }
   if (type === 'IPv6_4') {
-    return anonymizeIPv64(ipString, v6MaskLength)
+    if (isIPv4MappedIPv6(ipString)) {
+      return anonymizeIPv64(ipString, v4MaskLength + 96)
+    } else {
+      return anonymizeIPv64(ipString, v6MaskLength)
+    }
   }
   return null
 }

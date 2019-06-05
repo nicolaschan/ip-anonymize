@@ -47,10 +47,35 @@ describe('AnonymizeTest', function () {
     })
 
     it('should anonymize IPv6_4 correctly (default 24)', function () {
-      assert.equal(anonymize('0:0:0:0:0:0:192.168.0.1'), '::0.0.0.0')
+      // This case is IPv4-compatible IPv6 address
+      assert.equal(anonymize('0:0:0:0:0:0:192.168.0.1'), '::192.168.0.0')
+
       assert.equal(anonymize('ff::0:0:192.168.0.1'), 'ff::0.0.0.0')
       assert.equal(anonymize('::ff:0:192.168.0.1'), '::0.0.0.0')
       assert.equal(anonymize('ffff:ffff::ff:0:192.168.0.1'), 'ffff:ff00::0.0.0.0')
+      assert.equal(anonymize('1::ffff:192.168.0.1'), '1::0.0.0.0')
+      assert.equal(anonymize('::fffe:192.168.0.1'), '::0.0.0.0')
+      assert.equal(anonymize('::00ff:192.168.0.1'), '::0.0.0.0')
+    })
+
+    it('should handle IPv4 compatible IPv6 addresses (default 24)', function () {
+      assert.equal(anonymize('::123.123.123.123'), '::123.123.123.0')
+      assert.equal(anonymize('0:0::192.168.42.20'), '::192.168.42.0')
+    })
+
+    it('should handle IPv4 compatible IPv6 addresses', function () {
+      assert.equal(anonymize('::123.123.123.123', 31, 0), '::123.123.123.122')
+      assert.equal(anonymize('::123.123.123.123', 0, 31), '::0.0.0.0')
+      assert.equal(anonymize('0:0::192.168.42.20', 31, 0), '::192.168.42.20')
+    })
+
+    it('should handle IPv4 mapped IPv6 addresses (default 24)', function () {
+      assert.equal(anonymize('::FFFF:123.123.123.123'), '::ffff:123.123.123.0')
+    })
+
+    it('should handle IPv4 mapped IPv6 addresses', function () {
+      assert.equal(anonymize('::FFFF:123.123.123.123', 31, 0), '::ffff:123.123.123.122')
+      assert.equal(anonymize('::FFFF:123.123.123.123', 0, 0), '::ffff:0.0.0.0')
     })
 
     it('should anonymize IPv4 with odd mask', function () {
