@@ -1,6 +1,6 @@
 {
   "name": "ip-anonymize",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "Anonymize IP addresses, works with IPv4 and IPv6",
   "main": "index.js",
   "types": "index.d.ts",
