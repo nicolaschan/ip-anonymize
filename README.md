@@ -70,5 +70,4 @@ Returns `null` if the IP address is invalid.
 
 ## References
 1. IPv6 representation: [RFC3513](https://tools.ietf.org/html/rfc3513#section-2.2)
-2. [IPv6 validator](https://www.helpsystems.com/intermapper/ipv6-test-address-validation)
-3. [IPv4-compatible and IPv4-mapped IPv6 addresses](https://web.archive.org/web/20181019071947/http://www.tcpipguide.com/free/t_IPv6IPv4AddressEmbedding-2.htm)
+1. [IPv4-compatible and IPv4-mapped IPv6 addresses](https://web.archive.org/web/20181019071947/http://www.tcpipguide.com/free/t_IPv6IPv4AddressEmbedding-2.htm)
